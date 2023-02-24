@@ -1,0 +1,66 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Theme.MyApplication" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+        <item name="android:windowBackground">@color/primary</item>
+        <item name="background">@color/primary</item>
+
+        <item name="colorSecondary">@color/primary</item>
+        <item name="colorSecondaryVariant">@color/primary</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:fontFamily">@raw/font</item>
+
+    </style>
+
+    <style name="DialogStyle" parent="Theme.Material3.DayNight.Dialog">
+        <item name="android:windowMinWidthMajor">90%</item>
+        <item name="android:windowMinWidthMinor">90%</item>
+        <item name="android:windowBackground">@drawable/bg_dialog</item>
+        <item name="background">@drawable/bg_dialog</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.CornerSize10Percent" parent="">
+        <item name="cornerSize">10%</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="HomeView.Text.Header" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">@dimen/header_font</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="HomeView.Text.ShowMore" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">@dimen/main_font</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:text">@string/show_more</item>
+        <item name="android:background">?selectableItemBackground</item>
+    </style>
+
+    <style name="Theme.BaseProject.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.BaseProject.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="CollapsingToolbarLayoutExpandedTextStyle" parent="Theme.MyApplication">
+        <item name="android:textColor">@android:color/transparent</item>
+        <item name="android:textSize">0sp</item>
+    </style>
+
+    <style name="ExpandedToolbarLayoutExpandedTextStyle" parent="Theme.MyApplication">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/header_font</item>
+    </style>
+
+    <style name="ToolbarStyle" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="colorControlNormal">@color/white</item>
+
+    </style>
+</resources>

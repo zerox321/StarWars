@@ -18,9 +18,11 @@ data class Film(
     val release_date: String? = "",
     val title: String? = "",
     val url: String? = "",
-    val planets: List<String?>? = listOf(),
-    val characters: List<String?>? = listOf(),
-    val species: List<String?>? = listOf(),
-    val starships: List<String?>? = listOf(),
-    val vehicles: List<String?>? = listOf()
-) : Parcelable
+    val planets: List<String>? = listOf(),
+    val characters: List<String>? = listOf(),
+    val species: List<String>? = listOf(),
+    val starships: List<String>? = listOf(),
+    val vehicles: List<String>? = listOf()
+) : Parcelable{
+    fun getFormattedDate(header:String)="<b>${header}</b>${release_date}"
+}

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_navigation"
+    app:startDestination="@+id/HomeFragment">
+
+    <fragment
+        android:id="@+id/HomeFragment"
+        android:name="com.star.wars.presentation.home.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/openFilmDetailFragment"
+            app:destination="@id/FilmDetailFragment"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right" />
+        <action
+            android:id="@+id/openPeopleDetailFragment"
+            app:destination="@id/PeopleDetailFragment" />
+        <action
+            android:id="@+id/openVehicleDetailFragment"
+            app:destination="@id/VehicleDetailFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/FilmDetailFragment"
+        android:name="com.star.wars.presentation.film.FilmDetailFragment"
+        android:label="FilmDetailFragment"
+        tools:layout="@layout/fragment_film_detail">
+        <argument
+            android:name="film"
+            android:defaultValue="@null"
+            app:argType="com.star.core.entities.remote.Film"
+            app:nullable="true" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/PeopleDetailFragment"
+        android:name="com.star.wars.presentation.people.PeopleDetailDialog"
+        android:label="PeopleDetailFragment"
+        tools:layout="@layout/dialog_people_detail">
+
+        <argument
+            android:name="people"
+            android:defaultValue="@null"
+            app:argType="com.star.core.entities.remote.People"
+            app:nullable="true" />
+    </dialog>
+    <dialog
+        android:id="@+id/VehicleDetailFragment"
+        android:name="com.star.wars.presentation.vehicle.VehicleDetailDialog"
+        android:label="VehicleDetailFragment"
+        tools:layout="@layout/dialog_vehicle_detail">
+
+        <argument
+            android:name="vehicle"
+            android:defaultValue="@null"
+            app:argType="com.star.core.entities.remote.Vehicle"
+            app:nullable="true" />
+    </dialog>
+
+
+</navigation>
