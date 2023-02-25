@@ -64,14 +64,18 @@ class PeopleSearchFragment : Fragment(), PeopleListActions {
                         toastUtility.showMessage(message = getString(R.string.no_internet))
                     }
                     PeopleSearchState.Idle -> Unit
-                    PeopleSearchState.Loading -> bindProgressView(true)
+                    PeopleSearchState.Loading -> {
+                        bindProgressView(true)
+                        binding.emptySearch.root.visibility = View.GONE
+
+                    }
                     is PeopleSearchState.Success -> {
                         bindProgressView(false)
                         peopleListAdapter.submitList(state.response.results)
                     }
                     PeopleSearchState.Empty -> {
+                        bindProgressView(false)
                         binding.emptySearch.root.visibility = View.VISIBLE
-                        binding.progressView.visibility = View.GONE
                     }
 
                 }

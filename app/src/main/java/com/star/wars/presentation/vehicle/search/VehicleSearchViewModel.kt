@@ -2,7 +2,6 @@ package com.star.wars.presentation.vehicle.search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.star.core.state.PeopleSearchState
 import com.star.core.state.VehicleSearchState
 import com.star.core.usecase.home.SearchVehicles
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -26,11 +25,8 @@ class VehicleSearchViewModel @Inject constructor(
         _state.emit(
             try {
                 val response = searchVehicles.invoke(query)
-                if (response.results.isNullOrEmpty()) {
-                    PeopleSearchState.Empty
-                    return@launch
-                }
-                VehicleSearchState.Success(response = response)
+                if (response.results.isNullOrEmpty()) VehicleSearchState.Empty
+                else VehicleSearchState.Success(response = response)
             } catch (t: Throwable) {
                 VehicleSearchState.Error(t)
             }

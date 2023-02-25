@@ -63,14 +63,18 @@ class FilmSearchFragment : Fragment(), FilmListActions {
                         toastUtility.showMessage(message = getString(R.string.no_internet))
                     }
                     FilmsSearchState.Idle -> Unit
-                    FilmsSearchState.Loading -> bindProgressView(true)
+                    FilmsSearchState.Loading -> {
+                        binding.emptySearch.root.visibility = View.GONE
+                        bindProgressView(true)
+                    }
+
                     is FilmsSearchState.Success -> {
                         bindProgressView(false)
                         filmListAdapter.submitList(state.response.results)
                     }
                     FilmsSearchState.Empty -> {
                         binding.emptySearch.root.visibility = View.VISIBLE
-                        binding.progressView.visibility = View.GONE
+                        bindProgressView(false)
                     }
                 }
             }
@@ -83,7 +87,6 @@ class FilmSearchFragment : Fragment(), FilmListActions {
         binding.searchInput.isEnabled = !isLoading
         binding.progressView.visibility = if (isLoading) View.VISIBLE else View.GONE
         binding.filmsRv.visibility = if (isLoading) View.GONE else View.VISIBLE
-        binding.emptySearch.root.visibility = View.GONE
     }
 
     private fun FragmentFilmSearchBinding.bindView() {

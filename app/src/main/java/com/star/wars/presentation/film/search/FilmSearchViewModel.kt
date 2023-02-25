@@ -25,11 +25,9 @@ class FilmSearchViewModel @Inject constructor(
         _state.emit(
             try {
                 val response = searchFilms.invoke(query)
-                if (response.results.isNullOrEmpty()) {
+                if (response.results.isNullOrEmpty())
                     FilmsSearchState.Empty
-                    return@launch
-                }
-                FilmsSearchState.Success(response = response)
+                 else FilmsSearchState.Success(response = response)
             } catch (t: Throwable) {
                 FilmsSearchState.Error(t)
             }

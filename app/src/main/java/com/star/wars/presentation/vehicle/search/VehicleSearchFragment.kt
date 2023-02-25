@@ -37,8 +37,7 @@ class VehicleSearchFragment : Fragment(), VehicleListActions {
     lateinit var toastUtility: ToastUtility
     private val vehicleListAdapter by lazy {
         VehicleListAdapter(
-            actions = this,
-            htmlUtility = htmlUtility
+            actions = this, htmlUtility = htmlUtility
         )
     }
 
@@ -68,14 +67,17 @@ class VehicleSearchFragment : Fragment(), VehicleListActions {
                         toastUtility.showMessage(message = getString(R.string.no_internet))
                     }
                     VehicleSearchState.Idle -> Unit
-                    VehicleSearchState.Loading -> bindProgressView(true)
+                    VehicleSearchState.Loading -> {
+                        bindProgressView(true)
+                        binding.emptySearch.root.visibility = View.GONE
+                    }
                     is VehicleSearchState.Success -> {
                         bindProgressView(false)
                         vehicleListAdapter.submitList(state.response.results)
                     }
-                    VehicleSearchState.Empty ->{
+                    VehicleSearchState.Empty -> {
                         binding.emptySearch.root.visibility = View.VISIBLE
-                        binding.progressView.visibility = View.GONE
+                        bindProgressView(false)
                     }
                 }
             }
@@ -87,8 +89,6 @@ class VehicleSearchFragment : Fragment(), VehicleListActions {
         binding.searchInput.isEnabled = !isLoading
         binding.progressView.visibility = if (isLoading) View.VISIBLE else View.GONE
         binding.peopleRv.visibility = if (isLoading) View.GONE else View.VISIBLE
-        binding.emptySearch.root.visibility = View.GONE
-
     }
 
     private fun FragmentVehicleSearchBinding.bindView() {
@@ -104,8 +104,7 @@ class VehicleSearchFragment : Fragment(), VehicleListActions {
 
     override fun onVehicleClick(vehicle: Vehicle?) {
         findNavController().navigate(
-            R.id.openVehicleDetailFragmentFromVehicleSearchFragment,
-            bundleOf("vehicle" to vehicle)
+            R.id.openVehicleDetailFragmentFromVehicleSearchFragment, bundleOf("vehicle" to vehicle)
         )
     }
 

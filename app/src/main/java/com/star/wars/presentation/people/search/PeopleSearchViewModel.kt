@@ -2,6 +2,7 @@ package com.star.wars.presentation.people.search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.star.core.state.FilmsSearchState
 import com.star.core.state.PeopleSearchState
 import com.star.core.usecase.home.SearchPeople
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -25,11 +26,9 @@ class PeopleSearchViewModel @Inject constructor(
         _state.emit(
             try {
                 val response = searchPeople.invoke(query)
-                if (response.results.isNullOrEmpty()) {
+                if (response.results.isNullOrEmpty())
                     PeopleSearchState.Empty
-                    return@launch
-                }
-                PeopleSearchState.Success(response = response)
+                else PeopleSearchState.Success(response = response)
             } catch (t: Throwable) {
                 PeopleSearchState.Error(t)
             }

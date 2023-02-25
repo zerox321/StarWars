@@ -22,6 +22,7 @@ import com.star.wars.presentation.home.list.VehiclePagedListAdapter
 import com.star.wars.presentation.people.search.list.PeopleListActions
 import com.star.wars.presentation.vehicle.search.list.VehicleListActions
 import com.star.wars.utility.HtmlUtility
+import com.star.wars.utility.ToastUtility
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import javax.inject.Inject
@@ -34,20 +35,24 @@ class HomeFragment : Fragment(), FilmListActions, VehicleListActions, PeopleList
     @Inject
     lateinit var htmlUtility: HtmlUtility
 
+    @Inject
+    lateinit var toastUtility: ToastUtility
+
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-
     private val filmListAdapter by lazy {
-        FilmPagedListAdapter(actions = this, htmlUtility = htmlUtility)
+        FilmPagedListAdapter(
+            actions = this,
+            htmlUtility = htmlUtility
+        )
     }
-    private val peopleListAdapter by lazy {
-        PeoplePagedListAdapter(actions = this)
-
-    }
+    private val peopleListAdapter by lazy { PeoplePagedListAdapter(actions = this) }
     private val vehicleListAdapter by lazy {
-        VehiclePagedListAdapter(actions = this, htmlUtility = htmlUtility)
-
+        VehiclePagedListAdapter(
+            actions = this,
+            htmlUtility = htmlUtility
+        )
     }
 
     override fun onCreateView(
@@ -83,6 +88,7 @@ class HomeFragment : Fragment(), FilmListActions, VehicleListActions, PeopleList
                 val isLoading =
                     loadStates.refresh == LoadState.Loading && peopleListAdapter.itemCount == 0
                 binding.peopleLoadingView.visibility = if (isLoading) View.VISIBLE else View.GONE
+
             }
         }
 
