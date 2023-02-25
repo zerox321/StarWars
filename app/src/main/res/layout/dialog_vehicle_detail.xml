@@ -81,14 +81,14 @@
         android:textColor="@color/white"
         android:textSize="@dimen/main_font"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/dateTv"
+        app:layout_constraintBottom_toTopOf="@+id/consumablesTv"
         app:layout_constraintEnd_toStartOf="@+id/end_guideline"
         app:layout_constraintStart_toEndOf="@+id/start_guideline"
         app:layout_constraintTop_toBottomOf="@+id/ImageView"
-        tools:text="Eslam Kamel" />
+        tools:text="Sand Crawler" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/dateTv"
+        android:id="@+id/consumablesTv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="4dp"
@@ -96,14 +96,42 @@
         android:textAlignment="viewStart"
         android:textColor="@color/gold"
         android:textSize="@dimen/second_font"
-        app:layout_constraintBottom_toTopOf="@+id/heightTv"
+        app:layout_constraintBottom_toTopOf="@+id/modelTv"
         app:layout_constraintEnd_toStartOf="@+id/end_guideline"
         app:layout_constraintStart_toEndOf="@+id/start_guideline"
         app:layout_constraintTop_toBottomOf="@+id/titleTv"
-        tools:text="1995" />
+        tools:text="2 months" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/heightTv"
+        android:id="@+id/modelTv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="4dp"
+        android:layout_marginTop="8dp"
+        android:textAlignment="viewStart"
+        android:textColor="@color/gold"
+        android:textSize="@dimen/second_font"
+        app:layout_constraintBottom_toTopOf="@+id/vehicle_class_tv"
+        app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+        app:layout_constraintStart_toEndOf="@+id/start_guideline"
+        app:layout_constraintTop_toBottomOf="@+id/consumablesTv"
+        tools:text="Digger Crawler" />
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/vehicle_class_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="4dp"
+        android:layout_marginTop="8dp"
+        android:textAlignment="viewStart"
+        android:textColor="@color/gold"
+        android:textSize="@dimen/second_font"
+        app:layout_constraintBottom_toTopOf="@+id/passengers_tv"
+        app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+        app:layout_constraintStart_toEndOf="@+id/start_guideline"
+        app:layout_constraintTop_toBottomOf="@+id/modelTv"
+        tools:text="wheeled" />
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/passengers_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="4dp"
@@ -114,18 +142,9 @@
         app:layout_constraintBottom_toTopOf="@+id/bottom_guideline"
         app:layout_constraintEnd_toStartOf="@+id/end_guideline"
         app:layout_constraintStart_toEndOf="@+id/start_guideline"
-        app:layout_constraintTop_toBottomOf="@+id/dateTv"
-        tools:text="172" />
+        app:layout_constraintTop_toBottomOf="@+id/vehicle_class_tv"
+        tools:text="passengers" />
 
-<!--    //            val vehicle_class: String? = "",-->
-<!--    //            val cargo_capacity: String? = "",-->
-<!--    //            val consumables: String? = "",-->
-<!--    //            val crew: String? = "",-->
-<!--    //            val length: String? = "",-->
-<!--    //            val manufacturer: String? = "",-->
-<!--    //            val cost_in_credits: String? = "",-->
-<!--    //            val passengers: String? = "",-->
-<!--    //            val max_atmosphering_speed: String? = "",-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,15 +3,18 @@ package com.star.wars.presentation.home.list
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.star.core.entities.remote.Film
 import com.star.wars.R
 import com.star.wars.databinding.FilmsItemViewBinding
+import com.star.wars.presentation.film.search.list.FilmItemDiffCallBack
+import com.star.wars.presentation.film.search.list.FilmListActions
 import com.star.wars.utility.HtmlUtility
 
-class FilmListAdapter(private val actions: FilmListActions, private val htmlUtility: HtmlUtility) :
-    PagingDataAdapter<Film, FilmListAdapter.FilmAdapterViewHolder>(FilmItemDiffCallBack()) {
+class FilmPagedListAdapter(
+    private val actions: FilmListActions,
+    private val htmlUtility: HtmlUtility
+) : PagingDataAdapter<Film, FilmPagedListAdapter.FilmAdapterViewHolder>(FilmItemDiffCallBack()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmAdapterViewHolder =
         FilmAdapterViewHolder(
             binding = FilmsItemViewBinding.inflate(
@@ -39,12 +42,7 @@ class FilmListAdapter(private val actions: FilmListActions, private val htmlUtil
         }
     }
 
-    class FilmItemDiffCallBack : DiffUtil.ItemCallback<Film>() {
-        override fun areItemsTheSame(old: Film, new: Film): Boolean = old.title == new.title
-        override fun areContentsTheSame(old: Film, new: Film): Boolean = old == new
-    }
 
-    interface FilmListActions {
-        fun onFilmClick(film: Film?)
-    }
+
+
 }

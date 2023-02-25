@@ -29,5 +29,8 @@ data class Vehicle(
     val url: String? = "",
 ) : Parcelable{
     fun getFormattedModel(header:String)="<b>${header}</b>${model}"
+    fun getFormattedConsumables(header:String)="<b>${header}</b>${consumables}"
+    fun getFormattedCarClass(header:String)="<b>${header}</b>${vehicle_class}"
+    fun getFormattedPassengers(header:String)="<b>${header}</b>${passengers}"
 
 }

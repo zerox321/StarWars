@@ -15,48 +15,39 @@ import com.star.core.entities.remote.People
 import com.star.core.entities.remote.Vehicle
 import com.star.wars.R
 import com.star.wars.databinding.FragmentHomeBinding
-import com.star.wars.presentation.home.list.FilmListAdapter
-import com.star.wars.presentation.home.list.PeopleListAdapter
-import com.star.wars.presentation.home.list.VehicleListAdapter
+import com.star.wars.presentation.film.search.list.FilmListActions
+import com.star.wars.presentation.home.list.FilmPagedListAdapter
+import com.star.wars.presentation.home.list.PeoplePagedListAdapter
+import com.star.wars.presentation.home.list.VehiclePagedListAdapter
+import com.star.wars.presentation.people.search.list.PeopleListActions
+import com.star.wars.presentation.vehicle.search.list.VehicleListActions
 import com.star.wars.utility.HtmlUtility
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class HomeFragment : Fragment(), FilmListAdapter.FilmListActions,
-    VehicleListAdapter.VehicleListActions, PeopleListAdapter.PeopleListActions {
+class HomeFragment : Fragment(), FilmListActions, VehicleListActions, PeopleListActions {
+
+    private val homeViewModel by viewModels<HomeViewModel>()
 
     @Inject
     lateinit var htmlUtility: HtmlUtility
+
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    private val homeViewModel by viewModels<HomeViewModel>()
-    private val filmListAdapter by lazy {
-        FilmListAdapter(actions = this, htmlUtility = htmlUtility).apply {
-            addLoadStateListener { state ->
-                val isLoading = state.refresh == LoadState.Loading && itemCount == 0
 
-            }
-        }
+    private val filmListAdapter by lazy {
+        FilmPagedListAdapter(actions = this, htmlUtility = htmlUtility)
     }
     private val peopleListAdapter by lazy {
-        PeopleListAdapter(actions = this).apply {
-            addLoadStateListener { state ->
-                val isLoading = state.refresh == LoadState.Loading && itemCount == 0
+        PeoplePagedListAdapter(actions = this)
 
-            }
-        }
     }
     private val vehicleListAdapter by lazy {
-        VehicleListAdapter(actions = this, htmlUtility = htmlUtility).apply {
-            addLoadStateListener { state ->
-                val isLoading = state.refresh == LoadState.Loading && itemCount == 0
+        VehiclePagedListAdapter(actions = this, htmlUtility = htmlUtility)
 
-
-            }
-        }
     }
 
     override fun onCreateView(
@@ -68,11 +59,7 @@ class HomeFragment : Fragment(), FilmListAdapter.FilmListActions,
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.run {
-            filmsRv.adapter = filmListAdapter
-            peopleRv.adapter = peopleListAdapter
-            vehicleRv.adapter = vehicleListAdapter
-        }
+        binding.bindView()
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             homeViewModel.filmsList.collectLatest { result -> filmListAdapter.submitData(result) }
@@ -84,7 +71,39 @@ class HomeFragment : Fragment(), FilmListAdapter.FilmListActions,
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             homeViewModel.vehicleList.collectLatest { result -> vehicleListAdapter.submitData(result) }
         }
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            filmListAdapter.loadStateFlow.collectLatest { loadStates ->
+                val isLoading =
+                    loadStates.refresh == LoadState.Loading && filmListAdapter.itemCount == 0
+                binding.filmsLoadingView.visibility = if (isLoading) View.VISIBLE else View.GONE
+            }
+        }
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            peopleListAdapter.loadStateFlow.collectLatest { loadStates ->
+                val isLoading =
+                    loadStates.refresh == LoadState.Loading && peopleListAdapter.itemCount == 0
+                binding.peopleLoadingView.visibility = if (isLoading) View.VISIBLE else View.GONE
+            }
+        }
 
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            vehicleListAdapter.loadStateFlow.collectLatest { loadStates ->
+                val isLoading =
+                    loadStates.refresh == LoadState.Loading && vehicleListAdapter.itemCount == 0
+                binding.vehicleLoadingView.visibility = if (isLoading) View.VISIBLE else View.GONE
+            }
+        }
+
+
+    }
+
+    private fun FragmentHomeBinding.bindView() {
+        filmsRv.adapter = filmListAdapter
+        peopleRv.adapter = peopleListAdapter
+        vehicleRv.adapter = vehicleListAdapter
+        filmsSearchIv.setOnClickListener { findNavController().navigate(R.id.openFilmSearchFragment) }
+        peopleSearchIv.setOnClickListener { findNavController().navigate(R.id.openPeopleSearchFragment) }
+        vehicleSearchIv.setOnClickListener { findNavController().navigate(R.id.openVehicleSearchFragment) }
     }
 
     override fun onDestroyView() {
@@ -105,3 +124,5 @@ class HomeFragment : Fragment(), FilmListAdapter.FilmListActions,
         findNavController().navigate(R.id.openVehicleDetailFragment, bundleOf("vehicle" to vehicle))
     }
 }
+
+

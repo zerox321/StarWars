@@ -1,7 +1,7 @@
 package com.star.wars.di
 
 import com.star.core.repository.HomeRepo
-import com.star.wars.datasource.remote.ApiService
+import com.star.wars.datasource.remote.service.ApiService
 import com.star.wars.datasource.repository.HomeRepoImp
 import dagger.Module
 import dagger.Provides

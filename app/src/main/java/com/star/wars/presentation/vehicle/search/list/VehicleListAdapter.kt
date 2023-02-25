@@ -1,9 +1,8 @@
-package com.star.wars.presentation.home.list
+package com.star.wars.presentation.vehicle.search.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.paging.PagingDataAdapter
-import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.star.core.entities.remote.Vehicle
 import com.star.wars.R
@@ -14,7 +13,7 @@ class VehicleListAdapter(
     private val actions: VehicleListActions,
     private val htmlUtility: HtmlUtility
 ) :
-    PagingDataAdapter<Vehicle, VehicleListAdapter.VehicleListAdapterViewHolder>(
+    ListAdapter<Vehicle, VehicleListAdapter.VehicleListAdapterViewHolder>(
         VehicleItemDiffCallBack()
     ) {
     override fun onCreateViewHolder(
@@ -45,12 +44,5 @@ class VehicleListAdapter(
         }
     }
 
-    class VehicleItemDiffCallBack : DiffUtil.ItemCallback<Vehicle>() {
-        override fun areItemsTheSame(old: Vehicle, new: Vehicle): Boolean = old.name == new.name
-        override fun areContentsTheSame(old: Vehicle, new: Vehicle): Boolean = old == new
-    }
 
-    interface VehicleListActions {
-        fun onVehicleClick(vehicle: Vehicle?)
-    }
 }

@@ -5,10 +5,7 @@ import android.net.ConnectivityManager
 import androidx.core.content.ContextCompat
 import androidx.paging.PagingConfig
 import com.star.wars.datasource.EndPoint.pageSize
-import com.star.wars.utility.ConnectionUtil
-import com.star.wars.utility.HtmlUtility
-import com.star.wars.utility.TextToSpeechController
-import com.star.wars.utility.ToastUtility
+import com.star.wars.utility.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -27,6 +24,10 @@ object UtilityModule {
 
     @Provides
     @Singleton
+    fun provideAnimationView() = AnimationView()
+
+    @Provides
+    @Singleton
     fun provideHtmlUtility() = HtmlUtility()
 
     @Provides
@@ -37,7 +38,10 @@ object UtilityModule {
     @Provides
     @Singleton
     fun provideConnectivityManager(@ApplicationContext context: Context) =
-        ContextCompat.getSystemService(context, ConnectivityManager::class.java) as ConnectivityManager
+        ContextCompat.getSystemService(
+            context,
+            ConnectivityManager::class.java
+        ) as ConnectivityManager
 
     @Provides
     @Singleton

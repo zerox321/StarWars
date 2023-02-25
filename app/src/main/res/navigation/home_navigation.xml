@@ -3,8 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_navigation"
-    app:startDestination="@+id/HomeFragment">
+    app:startDestination="@+id/SplashFragment">
 
+    <fragment
+        android:id="@+id/SplashFragment"
+        android:name="com.star.wars.presentation.splash.SplashFragment"
+        android:label="SplashFragment"
+        tools:layout="@layout/fragment_splash">
+
+        <action
+            android:id="@+id/openHomeFragment"
+            app:destination="@id/HomeFragment"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right" />
+    </fragment>
     <fragment
         android:id="@+id/HomeFragment"
         android:name="com.star.wars.presentation.home.HomeFragment"
@@ -18,6 +32,26 @@
             app:popEnterAnim="@anim/enter_from_left"
             app:popExitAnim="@anim/exit_to_right" />
         <action
+            android:id="@+id/openFilmSearchFragment"
+            app:destination="@id/FilmSearchFragment"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right" />
+        <action
+            android:id="@+id/openPeopleSearchFragment"
+            app:destination="@id/PeopleSearchFragment"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right" /><action
+            android:id="@+id/openVehicleSearchFragment"
+            app:destination="@id/VehicleSearchFragment"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right" />
+        <action
             android:id="@+id/openPeopleDetailFragment"
             app:destination="@id/PeopleDetailFragment" />
         <action
@@ -26,6 +60,43 @@
     </fragment>
 
 
+    <fragment
+        android:id="@+id/VehicleSearchFragment"
+        android:name="com.star.wars.presentation.vehicle.search.VehicleSearchFragment"
+        android:label="VehicleSearchFragment"
+        tools:layout="@layout/fragment_vehicle_search">
+        <action
+            android:id="@+id/openVehicleDetailFragmentFromVehicleSearchFragment"
+            app:destination="@id/VehicleDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/PeopleSearchFragment"
+        android:name="com.star.wars.presentation.people.search.PeopleSearchFragment"
+        android:label="PeopleSearchFragment"
+        tools:layout="@layout/fragment_people_search">
+
+
+        <action
+            android:id="@+id/openPeopleDetailFragmentFromPeopleSearchFragment"
+            app:destination="@id/PeopleDetailFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/FilmSearchFragment"
+        android:name="com.star.wars.presentation.film.search.FilmSearchFragment"
+        android:label="FilmSearchFragment"
+        tools:layout="@layout/fragment_film_search">
+
+
+        <action
+            android:id="@+id/openFilmDetailFragmentFromSearch"
+            app:destination="@id/FilmDetailFragment"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right" />
+    </fragment>
     <fragment
         android:id="@+id/FilmDetailFragment"
         android:name="com.star.wars.presentation.film.FilmDetailFragment"

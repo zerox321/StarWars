@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.star.core.entities.remote.Film
 import com.star.wars.R
 import com.star.wars.databinding.FragmentFilmDetailBinding
 import com.star.wars.utility.HtmlUtility
@@ -37,6 +38,11 @@ class FilmDetailFragment : Fragment() {
                 binding.contentFilmDetails.playIcon.setImageResource(R.drawable.ic_stop_sound)
             }
 
+            override fun onStop(utteranceId: String?, interrupted: Boolean) {
+                super.onStop(utteranceId, interrupted)
+                binding.contentFilmDetails.playIcon.setImageResource(R.drawable.ic_play_sound)
+            }
+
             override fun onDone(utteranceId: String) {
                 binding.contentFilmDetails.playIcon.setImageResource(R.drawable.ic_play_sound)
             }
@@ -56,22 +62,21 @@ class FilmDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.run {
-            toolbar.setNavigationOnClickListener { findNavController().popBackStack() }
-            toolbar.title = film?.title
-
-            topMovieDetails.titleTv.text = film?.title
-            contentFilmDetails.playIcon.setOnClickListener {
-                textToSpeechController.speak(film?.opening_crawl)
-            }
-            contentFilmDetails.desc.text = htmlUtility.fromHtml(film?.opening_crawl)
-            topMovieDetails.datesTv.text =
-                htmlUtility.fromHtml(film?.getFormattedDate(header = getString(R.string.date)))
-        }
-
-        textToSpeechController.attachProgressListener(utteranceProgressListener)
+        binding.bindView(film = film)
     }
 
+    private fun FragmentFilmDetailBinding.bindView(film: Film?) {
+        toolbar.setNavigationOnClickListener { findNavController().popBackStack() }
+        toolbar.title = film?.title
+        topMovieDetails.titleTv.text = film?.title
+        contentFilmDetails.playIcon.setOnClickListener {
+            textToSpeechController.speak(film?.opening_crawl)
+        }
+        contentFilmDetails.desc.text = htmlUtility.fromHtml(film?.opening_crawl)
+        topMovieDetails.datesTv.text =
+            htmlUtility.fromHtml(film?.getFormattedDate(header = getString(R.string.date)))
+        textToSpeechController.attachProgressListener(utteranceProgressListener)
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

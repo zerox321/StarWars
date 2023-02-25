@@ -2,12 +2,10 @@ package com.star.wars.di
 
 import com.star.core.usecase.home.GetFilms
 import com.star.core.usecase.home.GetPeople
-import com.star.core.usecase.home.GetStarships
 import com.star.core.usecase.home.GetVehicles
-import com.star.wars.datasource.remote.FilmsDataSource
-import com.star.wars.datasource.remote.PeopleDataSource
-import com.star.wars.datasource.remote.StarshipsDataSource
-import com.star.wars.datasource.remote.VehiclesDataSource
+import com.star.wars.datasource.remote.pagingSource.FilmsDataSource
+import com.star.wars.datasource.remote.pagingSource.PeopleDataSource
+import com.star.wars.datasource.remote.pagingSource.VehiclesDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -35,9 +33,5 @@ object PagedDataSourceModule {
     fun provideVehiclesDataSource(getVehicles: GetVehicles): VehiclesDataSource =
         VehiclesDataSource(getVehicles)
 
-    //StarshipsDataSource
-    @Provides
-    @ViewModelScoped
-    fun provideStarshipsDataSource(getStarships: GetStarships): StarshipsDataSource =
-        StarshipsDataSource(getStarships)
+
 }

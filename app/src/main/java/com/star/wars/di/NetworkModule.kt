@@ -5,7 +5,7 @@ import com.star.wars.BuildConfig
 import com.star.wars.BuildConfig.baseUrl
 import com.star.wars.datasource.EndPoint.CACHE_SIZE
 import com.star.wars.datasource.EndPoint.timeOut
-import com.star.wars.datasource.remote.ApiService
+import com.star.wars.datasource.remote.service.ApiService
 import com.star.wars.datasource.remote.interceptor.OfflineInterceptor
 import com.star.wars.utility.ConnectionUtil
 import dagger.Module

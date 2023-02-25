@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.navArgs
+import com.star.core.entities.remote.People
 import com.star.wars.R
 import com.star.wars.databinding.DialogPeopleDetailBinding
 import com.star.wars.utility.HtmlUtility
@@ -17,8 +18,10 @@ class PeopleDetailDialog : DialogFragment() {
 
     @Inject
     lateinit var htmlUtility: HtmlUtility
+
     private val args by navArgs<PeopleDetailDialogArgs>()
     private val people get() = args.people
+
     private var _binding: DialogPeopleDetailBinding? = null
     private val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,18 +38,18 @@ class PeopleDetailDialog : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.run {
-            titleTv.text = people?.name
-            dateTv.text = htmlUtility.fromHtml(
-                html = people?.getFormattedYear(header = getString(R.string.year))
-            )
-            heightTv.text = htmlUtility.fromHtml(
-                html = people?.getFormattedHeight(
-                    header = getString(R.string.height), metric = getString(R.string.cm)
-                )
-            )
-            closeIv.setOnClickListener { this@PeopleDetailDialog.dismissAllowingStateLoss() }
-        }
+        binding.bindView(people=people)
+    }
+
+    private fun DialogPeopleDetailBinding.bindView(people: People?) {
+        titleTv.text = people?.name
+        dateTv.text = htmlUtility.fromHtml(
+            html = people?.getFormattedYear(header = getString(R.string.year))
+        )
+        heightTv.text = htmlUtility.fromHtml(
+            html = people?.getFormattedHeight(header = getString(R.string.height), metric = getString(R.string.cm))
+        )
+        closeIv.setOnClickListener { this@PeopleDetailDialog.dismissAllowingStateLoss() }
     }
 
     override fun onDestroyView() {

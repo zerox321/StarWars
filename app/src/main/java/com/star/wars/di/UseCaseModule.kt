@@ -1,10 +1,7 @@
 package com.star.wars.di
 
 import com.star.core.repository.HomeRepo
-import com.star.core.usecase.home.GetFilms
-import com.star.core.usecase.home.GetPeople
-import com.star.core.usecase.home.GetStarships
-import com.star.core.usecase.home.GetVehicles
+import com.star.core.usecase.home.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,19 +17,28 @@ object UseCaseModule {
     @ViewModelScoped
     fun provideGetFilms(repo: HomeRepo): GetFilms = GetFilms(repo)
 
+    @Provides
+    @ViewModelScoped
+    fun provideSearchFilms(repo: HomeRepo): SearchFilms = SearchFilms(repo)
+
     //GetPeople
     @Provides
     @ViewModelScoped
     fun provideGetPeople(repo: HomeRepo): GetPeople = GetPeople(repo)
 
-    //GetStarships
+    //SearchPeople
     @Provides
     @ViewModelScoped
-    fun provideGetStarships(repo: HomeRepo): GetStarships = GetStarships(repo)
+    fun provideSearchPeople(repo: HomeRepo): SearchPeople = SearchPeople(repo)
 
     //GetVehicles
     @Provides
     @ViewModelScoped
     fun provideGetVehicles(repo: HomeRepo): GetVehicles = GetVehicles(repo)
+
+    //SearchVehicles
+    @Provides
+    @ViewModelScoped
+    fun provideSearchVehicles(repo: HomeRepo): SearchVehicles = SearchVehicles(repo)
 
 }

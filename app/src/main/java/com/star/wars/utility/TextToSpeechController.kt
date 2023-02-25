@@ -28,6 +28,10 @@ class TextToSpeechController @Inject constructor(context: Context) {
     }
 
     fun speak(text: String?) {
+        if (textToSpeech.isSpeaking) {
+            textToSpeech.stop()
+            return
+        }
         val speechStatus = textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, "ID")
         if (speechStatus == TextToSpeech.ERROR) Log.e(tag, "Cant use the Text to speech.")
     }

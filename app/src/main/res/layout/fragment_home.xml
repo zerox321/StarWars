@@ -1,160 +1,249 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:fillViewport="true"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:animateLayoutChanges="true">
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/top_guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".01" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/bottom_guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".95" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/start_guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent=".05" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/end_guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent=".95" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/logo_iv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@+id/start_guideline"
-        app:layout_constraintTop_toBottomOf="@+id/top_guideline"
-        app:srcCompat="@drawable/ic_logo" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/notificationIv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="4dp"
-        app:layout_constraintEnd_toStartOf="@+id/userIv"
-        app:layout_constraintBottom_toBottomOf="@+id/userIv"
-        app:layout_constraintTop_toTopOf="@+id/userIv"
-        app:srcCompat="@drawable/round_notifications_24" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/userIv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="4dp"
-        app:layout_constraintBottom_toBottomOf="@+id/logo_iv"
-        app:layout_constraintEnd_toStartOf="@+id/end_guideline"
-        app:layout_constraintTop_toBottomOf="@+id/top_guideline"
-        app:srcCompat="@drawable/user" />
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/searchIv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/userIv"
-        android:layout_marginHorizontal="4dp"
-        app:layout_constraintEnd_toStartOf="@+id/notificationIv"
-        app:layout_constraintTop_toTopOf="@+id/userIv"
-        app:srcCompat="@drawable/round_search_24" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/filmsTitle"
-        style="@style/HomeView.Text.Header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/films"
-        app:layout_constraintBottom_toTopOf="@+id/filmsRv"
-        app:layout_constraintStart_toEndOf="@+id/start_guideline"
-        app:layout_constraintTop_toBottomOf="@+id/logo_iv" />
-
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/filmsRv"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="8dp"
-        android:clipToPadding="false"
-        android:orientation="horizontal"
-        android:paddingStart="20dp"
-        app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/peopleTitle"
-        app:layout_constraintTop_toBottomOf="@+id/filmsTitle"
-        tools:context=".presentation.home.HomeFragment"
-        tools:listitem="@layout/films_item_view" />
+        android:animateLayoutChanges="true">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/peopleTitle"
-        style="@style/HomeView.Text.Header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/people"
-        app:layout_constraintBottom_toTopOf="@+id/peopleRv"
-        app:layout_constraintStart_toEndOf="@+id/start_guideline"
-        app:layout_constraintTop_toBottomOf="@+id/filmsRv" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/top_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".01" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/bottom_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".95" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/start_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".05" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/end_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".95" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/logo_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/start_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/top_guideline"
+            app:srcCompat="@drawable/ic_logo" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/notificationIv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/userIv"
+            app:layout_constraintEnd_toStartOf="@+id/userIv"
+            app:layout_constraintTop_toTopOf="@+id/userIv"
+            app:srcCompat="@drawable/round_notifications_24" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/userIv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/logo_iv"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/top_guideline"
+            app:srcCompat="@drawable/user" />
 
 
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/filmsTitle"
+            style="@style/HomeView.Text.Header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/films"
+            app:layout_constraintBottom_toTopOf="@+id/filmsRv"
+            app:layout_constraintStart_toEndOf="@+id/start_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/logo_iv" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/peopleRv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="8dp"
-        android:clipToPadding="false"
-        android:orientation="horizontal"
-        android:paddingStart="20dp"
-        app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/vehicleTitle"
-        app:layout_constraintTop_toBottomOf="@+id/peopleTitle"
-        tools:context=".presentation.home.HomeFragment"
-        tools:listitem="@layout/people_item_view" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/filmsSearchIv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/filmsTitle"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintTop_toTopOf="@+id/filmsTitle"
+            app:srcCompat="@drawable/round_search_24" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/filmsRv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            android:paddingStart="20dp"
+            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+            app:layout_constraintTop_toBottomOf="@+id/filmsTitle"
+            tools:context=".presentation.home.HomeFragment"
+            tools:listitem="@layout/films_item_view" />
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/filmsLoadingView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintStart_toEndOf="@+id/start_guideline"
+            app:layout_constraintTop_toBottomOf="@id/filmsRv"
+            tools:visibility="visible">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <include layout="@layout/film_place_holder" />
+
+                <include layout="@layout/film_place_holder" />
+
+                <include layout="@layout/film_place_holder" />
+
+                <include layout="@layout/film_place_holder" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/peopleTitle"
+            style="@style/HomeView.Text.Header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/people"
+            app:layout_constraintStart_toEndOf="@+id/start_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/filmsLoadingView" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/peopleSearchIv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/peopleTitle"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintTop_toTopOf="@+id/peopleTitle"
+            app:srcCompat="@drawable/round_search_24" />
 
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/vehicleTitle"
-        style="@style/HomeView.Text.Header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/vehicle"
-        app:layout_constraintBottom_toTopOf="@+id/vehicleRv"
-        app:layout_constraintStart_toEndOf="@+id/start_guideline"
-        app:layout_constraintTop_toBottomOf="@+id/peopleRv" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/peopleRv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            android:paddingStart="20dp"
+            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+            app:layout_constraintTop_toBottomOf="@+id/peopleTitle"
+            tools:context=".presentation.home.HomeFragment"
+            tools:listitem="@layout/people_item_view" />
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/peopleLoadingView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintStart_toEndOf="@+id/start_guideline"
+            app:layout_constraintTop_toBottomOf="@id/peopleRv"
+            tools:visibility="visible">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <include layout="@layout/people_place_holder" />
+
+                <include layout="@layout/people_place_holder" />
+
+                <include layout="@layout/people_place_holder" />
+
+                <include layout="@layout/people_place_holder" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/vehicleTitle"
+            style="@style/HomeView.Text.Header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/vehicle"
+            app:layout_constraintStart_toEndOf="@+id/start_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/peopleLoadingView" />
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/vehicleRv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="8dp"
-        android:clipToPadding="false"
-        android:orientation="horizontal"
-        android:paddingStart="20dp"
-        app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-        app:layout_constraintTop_toBottomOf="@+id/vehicleTitle"
-        tools:context=".presentation.home.HomeFragment"
-        tools:listitem="@layout/vehicle_item_view" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/vehicleSearchIv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/vehicleTitle"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintTop_toTopOf="@+id/vehicleTitle"
+            app:srcCompat="@drawable/round_search_24" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/vehicleRv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            android:paddingStart="20dp"
+            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+            app:layout_constraintTop_toBottomOf="@+id/vehicleTitle"
+            tools:context=".presentation.home.HomeFragment"
+            tools:listitem="@layout/vehicle_item_view" />
+
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/vehicleLoadingView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:layout_constraintEnd_toStartOf="@+id/end_guideline"
+            app:layout_constraintStart_toEndOf="@+id/start_guideline"
+            app:layout_constraintTop_toBottomOf="@id/vehicleRv"
+            tools:visibility="visible">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <include layout="@layout/vehicle_place_holder" />
+
+                <include layout="@layout/vehicle_place_holder" />
+
+                <include layout="@layout/vehicle_place_holder" />
+
+                <include layout="@layout/vehicle_place_holder" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
 

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.navArgs
+import com.star.core.entities.remote.Vehicle
 import com.star.wars.R
 import com.star.wars.databinding.DialogVehicleDetailBinding
 import com.star.wars.utility.HtmlUtility
@@ -36,26 +37,23 @@ class VehicleDetailDialog : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.run {
-            titleTv.text = vehicle?.name
-            dateTv.text = htmlUtility.fromHtml(
-                html = vehicle?.getFormattedModel(header = getString(R.string.model))
-            )
-            heightTv.text =
-                htmlUtility.fromHtml(html = vehicle?.getFormattedModel(header = getString(R.string.model)))
+        binding.bindView(vehicle)
 
-//            val vehicle_class: String? = "",
-//            val cargo_capacity: String? = "",
-//            val consumables: String? = "",
-//            val crew: String? = "",
-//            val length: String? = "",
-//            val manufacturer: String? = "",
-//            val cost_in_credits: String? = "",
-//            val passengers: String? = "",
-//            val max_atmosphering_speed: String? = "",
+    }
 
-            closeIv.setOnClickListener { this@VehicleDetailDialog.dismissAllowingStateLoss() }
-        }
+    private fun DialogVehicleDetailBinding.bindView(vehicle: Vehicle?) {
+        titleTv.text = vehicle?.name
+        consumablesTv.text = htmlUtility.fromHtml(
+            html = vehicle?.getFormattedConsumables(header = getString(R.string.consumables))
+        )
+        modelTv.text =
+            htmlUtility.fromHtml(html = vehicle?.getFormattedModel(header = getString(R.string.model)))
+        vehicleClassTv.text =
+            htmlUtility.fromHtml(html = vehicle?.getFormattedCarClass(header = getString(R.string.car_class)))
+        passengersTv.text =
+            htmlUtility.fromHtml(html = vehicle?.getFormattedPassengers(header = getString(R.string.passengers)))
+
+        closeIv.setOnClickListener { this@VehicleDetailDialog.dismissAllowingStateLoss() }
     }
 
     override fun onDestroyView() {

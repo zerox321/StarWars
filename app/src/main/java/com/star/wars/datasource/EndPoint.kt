@@ -9,6 +9,8 @@ object EndPoint {
     const val pageSize = 20
 
 
-    const val SendOtpCodeConstant = "Patient/SendOtpCode"
+    const val FilmsConstant = "films/"
+    const val VehiclesConstant = "vehicles/"
+    const val PeopleConstant = "people/"
 
 }
