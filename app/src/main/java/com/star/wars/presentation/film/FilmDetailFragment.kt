@@ -46,7 +46,7 @@ class FilmDetailFragment : Fragment() {
             override fun onDone(utteranceId: String) {
                 binding.contentFilmDetails.playIcon.setImageResource(R.drawable.ic_play_sound)
             }
-
+            @Suppress("DEPRECATION")
             override fun onError(utteranceId: String) {
                 binding.contentFilmDetails.playIcon.setImageResource(R.drawable.ic_play_sound)
             }
